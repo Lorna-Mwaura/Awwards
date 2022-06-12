@@ -23,7 +23,7 @@
 
 <body>
     {% include 'navbar.html' %}
-    <div class="col-md-8">
+    
         {% if messages %}
         {% for message in messages %}
         <div class="alert alert-{{message.tag}}">
@@ -34,4 +34,4 @@
         {% block content %}
         {% endblock %}
 
-    </div>
+ 
