@@ -4,6 +4,11 @@
 {% block content %}
 
     <div class="content-section">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+            
+       
         <!-- Sign up form -->
         <form method="POST">
             {% csrf_token %}
@@ -22,5 +27,7 @@
                 Already have an account? <a class="ml-2" href="{% url 'login' %}">Sign in</a>
             </small>
         </div>
+        <div class="col-4"></div>
+    </div>
     </div>
 {% endblock content %}
