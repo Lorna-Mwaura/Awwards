@@ -36,4 +36,16 @@ class Project(models.Model):
     def __str__(self):
         return self.title
 
-   
+    def get_absolute_url(self):
+        return reverse('project-detail', kwargs={'pk': self.pk})
+
+    class Meta:
+        ordering = ['-pk']
+ 
+    def save_project(self):
+        self.save()
+
+    @classmethod
+    def search_by_projectname(cls,idea):
+        projects = cls.objects.filter(title__icontains=idea)
+        return projects
