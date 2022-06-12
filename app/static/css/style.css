@@ -1,0 +1,10 @@
+#cover {
+	background: url(../images/photo56.jpeg);
+    height: 80vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 1px;
+    margin: 10px;
+    
+   
+}
