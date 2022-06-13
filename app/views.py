@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserRegistrationForm
+from .forms import UserRegistrationForm, uploadform
 from django.contrib.auth.decorators import login_required
+from .models import Project
+
 
 # Create your views here.
 def welcome(request):
-    return render(request,'welcome.html')
+    projects = Project.objects.all()
+    return render(request,'welcome.html', {"projects":projects})
 
 def register(request):
     if request.method == 'POST':
@@ -22,3 +25,26 @@ def register(request):
 @login_required # Require user logged in before they can access profile page
 def profile(request):
     return render(request, 'users/profile.html')
+
+
+@login_required
+def upload(request):
+    '''
+    function to upload project for display
+    '''
+    current_user = request.user
+    if request.method == "POST":
+        form = uploadform(request.POST,request.FILES)
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.user = current_user
+            project.save()
+            return redirect('welcome')
+    else:
+        form = uploadform()
+    context = {
+        "form":form
+    }
+
+    return render(request,"projects/upload.html",context)
+
