@@ -34,7 +34,8 @@ class Project(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.title
+        # return self.title
+        return f'{self.user.username} {self.title} Project'
 
     def get_absolute_url(self):
         return reverse('project-detail', kwargs={'pk': self.pk})
