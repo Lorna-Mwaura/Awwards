@@ -21,7 +21,7 @@
     <title>Awwards</title>
 </head>
 
-<body>
+<body class="text-black">
     {% include 'navbar.html' %}
     
         {% if messages %}
@@ -34,4 +34,6 @@
         {% block content %}
         {% endblock %}
 
- 
+        {% include 'footer.html'%}
+</body>
+</html>
