@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .serializers import ProjectSerializer
+from .serializers import ProjectSerializer, ProfileSerializer
 from .forms import UserRegistrationForm, uploadform
 from django.contrib.auth.decorators import login_required
-from .models import Project
+from .models import *
 from rest_framework.response import Response
 from rest_framework import viewsets
 
@@ -54,3 +54,8 @@ def upload(request):
 class ProjectList(viewsets.ModelViewSet):
         queryset = Project.objects.all().order_by('title')
         serializer_class =ProjectSerializer
+
+
+class ProfileList(viewsets.ModelViewSet):
+        queryset = Profile.objects.all()
+        serializer_class =ProfileSerializer
