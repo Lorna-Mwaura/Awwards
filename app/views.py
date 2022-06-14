@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from .serializers import ProjectSerializer
 from .forms import UserRegistrationForm, uploadform
 from django.contrib.auth.decorators import login_required
 from .models import Project
+from rest_framework.response import Response
+from rest_framework import viewsets
 
 
 # Create your views here.
@@ -48,3 +51,6 @@ def upload(request):
 
     return render(request,"projects/upload.html",context)
 
+class ProjectList(viewsets.ModelViewSet):
+        queryset = Project.objects.all().order_by('title')
+        serializer_class =ProjectSerializer
